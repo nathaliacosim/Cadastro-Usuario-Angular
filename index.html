@@ -1,0 +1,62 @@
+<html ng-app="cadastro">
+<head>
+	<title>Cadastro de Usuários</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="angular/angular-1.6.6/angular.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+</head>
+<body ng-controller="cadastroCtrl">
+	<div class="jumbotron container top">
+		<h2 id="titulo">{{app}}</h2>
+		<input class="form-control" type="text" ng-model="user.nome" placeholder="Nome"/>
+		<input class="form-control" type="text" ng-model="user.end" placeholder="Endereço 1" required/>
+		<input class="form-control" type="text" ng-model="user.endAlt" placeholder="Endereço 2"/>
+		<input class="form-control" type="text" ng-model="user.cidade" placeholder="Cidade"/>
+		<input class="form-control" type="text" ng-model="user.uf" placeholder="Estado"/>
+		<input class="form-control" type="email" ng-model="user.email" placeholder="Email 1" required/>
+		<input class="form-control" type="email" ng-model="user.emailAlt" placeholder="Email 2"/>
+		<input class="form-control" type="number" ng-model="user.telefone" placeholder="Telefone 1" required/>
+		<input class="form-control" type="number" ng-model="user.telAlt" placeholder="Telefone 2"/>
+		
+		<button class="btn btn-primary btn-block" ng-click="adicionarUsuario(user)" ng-disabled="!user.nome || !user.end || !user.cidade || !user.uf || !user.email || !user.telefone">Adicionar Usuário</button>
+    
+	    <table ng-show="cadUser.length > 0" class="table">
+			<tr>
+				<th></th>
+				<th>Nome</th>
+				<th>Endereço 1</th>
+				<th>Endereço 2</th>
+				<th>Cidade</th>
+				<th>Estado</th>
+				<th>Email 1</th>
+				<th>Email 2</th>
+				<th>Telefone 1</th>
+				<th>Telefone 2</th>
+				<th></th>
+			</tr>
+			<tr ng-class="{'selecionado negrito': user.selecionado}" ng-repeat="user in cadUser">
+				<td><input class="btn btn-success active" type="checkbox" ng-model="user.selecionado"/></td>
+				<td>{{user.nome}}</td>
+				<td>{{user.end}}</td>
+				<td>{{user.endAlt}}</td>
+				<td>{{user.cidade}}</td>
+				<td>{{user.uf}}</td>
+				<td>{{user.email}}</td>
+				<td>{{user.emailAlt}}</td>
+				<td>{{user.telefone}}</td>
+				<td>{{user.telAlt}}</td>
+				<td><div style="width: 20px; height: 20px;" ng-style="{'background-color': user.cor}"></div></td>
+			</tr>
+		</table>
+        <button class="btn btn-danger btn-block" ng-click="apagarUsuarios(cadUser)" ng-if="isUsuarioSelecionado(cadUser)">Apagar Usuários</button>
+	    <div>
+	      <h4>Entre em Contato</h4>
+	      <a href="https://www.facebook.com/nathi.cosim" class="btn btn-outline-primary"><i class="fa fa-facebook fa-2x"></i></a>
+	      <a href="https://github.com/nathaliacosim" class="btn btn-outline-primary"><i class="fa fa-github fa-2x"></i></a>
+	      <a href="https://plus.google.com/u/0/+NathaliaCosim" class="btn btn-outline-primary"><i class="fa fa-google fa-2x"></i></a>
+	    </div>
+	</div>
+	<script src="js/controll.js"></script>
+  </body>
+</html>
